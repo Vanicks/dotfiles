@@ -162,6 +162,7 @@ function pre_setup_tasks () {
   # Verify required packages are installed
   system_verify "git" true
   system_verify "zsh" false
+  system_verify "vim" false
   system_verify "nvim" false
   system_verify "tmux" false
 
@@ -187,7 +188,6 @@ function pre_setup_tasks () {
 
 # Downloads / updates dotfiles and symlinks them
 function setup_dot_files () {
-
   # If dotfiles not yet present, clone the repo
   if [[ ! -d "$DOTFILES_DIR" ]]; then
     echo -e "${PURPLE}Dotfiles not yet present."\
@@ -233,10 +233,14 @@ function apply_preferences () {
     fi
   fi
 
-  # Prompt user to update ZSH, Tmux plugins, then reload each
-  echo -e "\n${CYAN_B}Would you like to install / update ZSH, Tmux plugins? (y/N)${RESET}"
+  # Prompt user to update ZSH, Tmux and Vim plugins, then reload each
+  echo -e "\n${CYAN_B}Would you like to install / update ZSH, Tmux and Vim plugins? (y/N)${RESET}"
   read -t $PROMPT_TIMEOUT -n 1 -r ans_cliplugins
   if [[ $ans_cliplugins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
+    # Install / update vim plugins with Plug
+    echo -e "\n${PURPLE}Installing Vim Plugins${RESET}"
+    vim +PlugInstall +qall
+
     # Install / update Tmux plugins with TPM
     echo -e "${PURPLE}Installing TMUX Plugins${RESET}"
     chmod ug+x "${XDG_DATA_HOME}/tmux/tpm"
@@ -276,7 +280,7 @@ function install_homebrew_package () {
       echo -en "🍺 ${PURPLE}Installing Homebrew...${RESET}\n"
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
-      export PATH="/usr/local/bin:$PATH" # TODO: Change this default path to linux or debian
+      export PATH="/usr/local/bin:$PATH"
     fi
   fi
   # Update / Install the Homebrew packages in ~/.Brewfile

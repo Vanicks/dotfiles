@@ -5,7 +5,6 @@ utils_dir="${XDG_CONFIG_HOME}/utils"
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# TODO: Create utils folder
 # Import utility functions (if present)
 if [[ -d $utils_dir ]]; then
   source ${utils_dir}/transfer.sh
@@ -38,10 +37,12 @@ if [[ -d $zsh_dir ]]; then
   # Configure ZSH stuff
   source ${zsh_dir}/lib/colors.zsh
   source ${zsh_dir}/lib/completion.zsh
+  source ${zsh_dir}/lib/cursor.zsh
   source ${zsh_dir}/lib/expansions.zsh
   source ${zsh_dir}/lib/history.zsh
   source ${zsh_dir}/lib/key-bindings.zsh
   source ${zsh_dir}/lib/navigation.zsh
+  source ${zsh_dir}/lib/surround.zsh
 fi
 
 # If using Pyenv, import the shell integration if availible
@@ -55,6 +56,12 @@ fi
 # If using Tilix, import the shell integration if availible
 if [ $TILIX_ID ] || [ $VTE_VERSION ] && [[ -f "/etc/profile.d/vte.sh" ]]; then
   source /etc/profile.d/vte.sh
+fi
+
+# If using homebrew, import the path
+if command_exists brew; then
+  export PATH="/usr/local/bin:$PATH"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # Append Cargo to path, if it's installed
