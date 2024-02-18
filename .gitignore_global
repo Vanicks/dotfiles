@@ -1,0 +1,41 @@
+# Ignore node_modules directory for Node.js projects
+node_modules/
+
+# Ignore any logs and databases
+*.log
+*.sqlite
+*.sqlite3
+
+# Compiled source #
+# *.com # this shit is causing vendor/cloud.google.com to be ignored.
+*.class
+*.dll
+*.exe
+*.o
+*.so
+/dist/
+/build/
+
+# Logs and databases #
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Redis state file
+dump.rdb
+
+.git-blame-ignore-revs
+
+# Ignore npm debug log files
+npm-debug.log*
+
+# Ignore dependency lock files
+yarn.lock
+package-lock.json
