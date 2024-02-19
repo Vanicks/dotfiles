@@ -229,7 +229,7 @@ function apply_preferences () {
     read -t $PROMPT_TIMEOUT -n 1 -r ans_zsh
     if [[ $ans_zsh =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
       echo -e "${PURPLE}Setting ZSH as default shell${RESET}"
-      chsh -s $(which zsh) $USER
+      # chsh -s $(which zsh) $USER
     fi
   fi
 
@@ -253,22 +253,22 @@ function apply_preferences () {
   fi
 
   # Apply general system, app and OS security preferences (prompt user first)
-  echo -e "\n${CYAN_B}Would you like to apply system preferences? (y/N)${RESET}"
-  read -t $PROMPT_TIMEOUT -n 1 -r ans_syspref
-  if [[ $ans_syspref =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then
-    # if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    #   echo -e "\n${PURPLE}Applying MacOS system preferences,\
-    #   ensure you've understood before proceeding${RESET}\n"
-    #   macos_settings_dir="$DOTFILES_DIR/scripts/macos-setup"
-    #   for macScript in "macos-security.sh" "macos-preferences.sh" "macos-apps.sh"; do
-    #     chmod +x $macos_settings_dir/$macScript && \
-    #     $macos_settings_dir/$macScript --quick-exit --yes-to-all
-    #   done
-    # fi
-    echo -e "\n${PURPLE}Applying preferences to GNOME apps, ensure you've understood before proceeding${RESET}\n"
-    dconf_script="$DOTFILES_DIR/scripts/linux/dconf-prefs.sh"
-    chmod +x $dconf_script && $dconf_script
-  fi
+  # echo -e "\n${CYAN_B}Would you like to apply system preferences? (y/N)${RESET}"
+  # read -t $PROMPT_TIMEOUT -n 1 -r ans_syspref
+  # if [[ $ans_syspref =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then
+  #   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  #     echo -e "\n${PURPLE}Applying MacOS system preferences,\
+  #     ensure you've understood before proceeding${RESET}\n"
+  #     macos_settings_dir="$DOTFILES_DIR/scripts/macos-setup"
+  #     for macScript in "macos-security.sh" "macos-preferences.sh" "macos-apps.sh"; do
+  #       chmod +x $macos_settings_dir/$macScript && \
+  #       $macos_settings_dir/$macScript --quick-exit --yes-to-all
+  #     done
+  #   fi
+  #   echo -e "\n${PURPLE}Applying preferences to GNOME apps, ensure you've understood before proceeding${RESET}\n"
+  #   dconf_script="$DOTFILES_DIR/scripts/linux/dconf-prefs.sh"
+  #   chmod +x $dconf_script && $dconf_script
+  # fi
 }
 
 # Homebrew not installed, ask user if they'd like to download it now
