@@ -58,11 +58,9 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] && [[ -f "/etc/profile.d/vte.sh" ]]; then
 fi
 
 # Add Brew to path, if it's installed
-if command_exists brew; then
-  export PATH="/usr/local/bin:$PATH"
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/clean-detailed.omp.json)"
-fi
+export PATH="/usr/local/bin:$PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/clean-detailed.omp.json)"
 
 # Append Cargo to path, if it's installed
 if [[ -d "$HOME/.cargo/bin" ]]; then
