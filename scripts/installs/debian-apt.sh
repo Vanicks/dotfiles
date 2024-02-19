@@ -190,6 +190,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
       sudo apt install ${app} --assume-yes
     fi
   done
+
+  # Install Oh My Posh
+  if hash oh-my-posh 2>/dev/null; then
+    echo -e "${YELLOW}[Skipping]${LIGHT} Oh My Posh is already installed${RESET}"
+  else
+    # Install Oh My Posh
+    echo -e "${PURPLE}[Installing]${LIGHT} Downloading Oh My Posh...${RESET}"
+    sudo curl -s https://ohmyposh.dev/install.sh | bash -s
+  fi
 fi
 
 echo -e "${PURPLE}Finished installing / updating Debian packages.${RESET}"
