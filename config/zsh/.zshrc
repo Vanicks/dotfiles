@@ -61,6 +61,7 @@ fi
 if command_exists brew; then
   export PATH="/usr/local/bin:$PATH"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/clean-detailed.omp.json)"
 fi
 
 # Append Cargo to path, if it's installed
