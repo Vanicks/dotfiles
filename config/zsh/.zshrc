@@ -19,7 +19,6 @@ fi
 # Import P10k config for command prompt
 # [[ ! -f ${zsh_dir}/.p10k.zsh ]] || source ${zsh_dir}/.p10k.zsh
 
-# TODO: Create libs folder
 # Source all ZSH config files (if present)
 if [[ -d $zsh_dir ]]; then
   # Import alias files
@@ -58,7 +57,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] && [[ -f "/etc/profile.d/vte.sh" ]]; then
   source /etc/profile.d/vte.sh
 fi
 
-# If using homebrew, import the path
+# Add Brew to path, if it's installed
 if command_exists brew; then
   export PATH="/usr/local/bin:$PATH"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
