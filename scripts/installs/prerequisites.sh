@@ -35,7 +35,7 @@ function install_arch () {
 function get_homebrew () {
   echo -e "${PURPLE}Setting up Homebrew${RESET}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  export PATH=/opt/homebrew/bin:$PATH
+  export PATH=/usr/local/bin:$PATH
 }
 
 # Detect OS type, then triggers install using appropriate package manager
