@@ -24,7 +24,7 @@ fi
 
 # Execute setup or update script
 cd "${DOTFILES_DIR}" && \
-chmod +x ./install.sh && \
-./install.sh --no-clear
+chmod +x ./run-install.sh && \
+./run-install.sh --no-clear
 
 # EOF
