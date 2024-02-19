@@ -58,7 +58,6 @@ debian_apps=(
   'btop'          # Live system resource monitoring
   'bmon'          # Bandwidth utilization monitor
   'ctop'          # Container metrics and monitoring
-  'gping'         # Interactive ping tool, with graph
   'glances'       # Resource monitor + web and API
   'goaccess'      # Web log analyzer and viewer
   'speedtest-cli' # Command line speed test utility
