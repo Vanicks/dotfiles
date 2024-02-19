@@ -156,7 +156,7 @@ function pre_setup_tasks () {
 
   # If pre-requsite packages not found, prompt to install
   if ! command_exists git; then
-    bash <(curl -s  -L 'https://alicia.url.lol/prerequisite-installs') $PARAMS
+    bash <(curl -s  -L 'https://raw.githubusercontent.com/Vanicks/dotfiles/main/scripts/installs/prerequisites.sh') $PARAMS
   fi
 
   # Verify required packages are installed
