@@ -13,6 +13,7 @@ brew 'tealdeer'        # Reader for command docs (better man)
 brew 'tokei'           # Count lines of code (better cloc)
 brew 'trash-cli'       # Record and restore removed files
 brew 'zoxide'          # Auto-learning navigation (better cd)
+brew 'oh-my-posh'      # Installs Oh-my-posh to make the terminal clean
 
 # Security Utilities
 brew 'clamav'          # Open source virus scanning suite
