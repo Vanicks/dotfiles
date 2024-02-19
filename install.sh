@@ -272,7 +272,7 @@ function apply_preferences () {
 }
 
 # Homebrew not installed, ask user if they'd like to download it now
-function install_homebrew_package () {
+function install_homebrew () {
   if ! command_exists brew; then
     echo -e "\n${CYAN_B}Would you like to install Homebrew? (y/N)${RESET}"
     read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewins
@@ -282,17 +282,6 @@ function install_homebrew_package () {
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
     fi
-  fi
-  # Update / Install the Homebrew packages in ~/.Brewfile
-  if command_exists brew && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
-    echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
-    brew update # Update Brew to latest version
-    brew upgrade # Upgrade all installed casks
-    brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
-    brew cleanup # Remove stale lock files and outdated downloads
-    killall Finder # Restart finder (required for some apps)
-  else
-    echo -e "${PURPLE}Skipping Homebrew as requirements not met${RESET}"
   fi
 }
 
@@ -306,7 +295,22 @@ function install_packages () {
   fi
 
   # Install Hombrew and update packages by default
-  install_homebrew_package
+  install_homebrew
+
+  # Update / Install the Homebrew packages in ~/.Brewfile
+  if command_exists brew && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
+    echo -e "\n${CYAN_B}Would you like to install / update homebrew packages? (y/N)${RESET}"
+    if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then 
+      echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
+      brew update # Update Brew to latest version
+      brew upgrade # Upgrade all installed casks
+      brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
+      brew cleanup # Remove stale lock files and outdated downloads
+      killall Finder # Restart finder (required for some apps)
+    fi
+  else
+    echo -e "${PURPLE}Skipping Homebrew as requirements not met${RESET}"
+  fi
 
   if [ -f "/etc/arch-release" ]; then
     # Arch Linux
