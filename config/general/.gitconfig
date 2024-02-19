@@ -209,7 +209,7 @@
 	rehh = reset --hard HEAD
 	remh = reset --mixed HEAD
 	resh = reset --soft HEAD
-	rehom = reset --hard origin/master
+	rehom = reset --hard origin/main
 	#############
 	r = remote
 	ra = remote add
