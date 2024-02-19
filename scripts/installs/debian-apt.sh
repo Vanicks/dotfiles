@@ -197,7 +197,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   else
     # Install Oh My Posh
     echo -e "${PURPLE}[Installing]${LIGHT} Downloading Oh My Posh...${RESET}"
-    sudo curl -s https://ohmyposh.dev/install.sh | bash -s
+    brew install jandedobbeleer/oh-my-posh/oh-my-posh
   fi
 fi
 
