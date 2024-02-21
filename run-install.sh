@@ -281,9 +281,13 @@ function install_homebrew () {
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
-    fi
-  else
-    # Update / Install the Homebrew packages in ~/.Brewfile
+    fi 
+  fi
+}
+
+function install_homebrew_libs () {
+  # Update / Install the Homebrew packages in ~/.Brewfile
+  if command_exists brew; then
     echo -e "\n${CYAN_B}Would you like to install Homebrew global libraries? (y/N)${RESET}"
     read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewins
     if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
@@ -298,7 +302,7 @@ function install_homebrew () {
       fi
     fi
   fi
-}
+} 
 
 # Based on system type, uses appropriate package manager to install / updates apps
 function install_packages () {
@@ -311,6 +315,7 @@ function install_packages () {
 
   # Install and setup homebrew
   install_homebrew
+  install_homebrew_libs
 
   if [ -f "/etc/arch-release" ]; then
     # Arch Linux
