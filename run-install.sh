@@ -281,6 +281,7 @@ function install_homebrew () {
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
+      echo "eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> ~/.zshrc
 
       # Ask if i want to install the libs in the brewfile after installing homebrew
       echo -e "\n${CYAN_B}Would you like to install Update Homebrew and install global libraries? (y/N)${RESET}"
