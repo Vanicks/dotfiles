@@ -195,7 +195,7 @@ function setup_dot_files () {
     echo -e "${YELLOW_B}You can change where dotfiles will be saved to,"\
     "by setting the DOTFILES_DIR env var${RESET}"
     mkdir -p "${DOTFILES_DIR}" && \
-    git clone --recursive ${DOTFILES_REPO} ${DOTFILES_DIR} && \
+    git clone --force --recursive ${DOTFILES_REPO} ${DOTFILES_DIR} && \
     cd "${DOTFILES_DIR}" && \
     echo -e "${PURPLE}Updating submodules${RESET}" && \
     git submodule update --recursive --remote --init
