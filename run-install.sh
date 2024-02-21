@@ -282,6 +282,8 @@ function install_homebrew () {
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
     fi
+  else
+    echo -e "${PURPLE}Skipping Homebrew is already installed!${RESET}"
   fi
 }
 
