@@ -196,11 +196,13 @@ function setup_dot_files () {
     "by setting the DOTFILES_DIR env var${RESET}"
     mkdir -p "${DOTFILES_DIR}" && \
     git clone --recursive ${DOTFILES_REPO} ${DOTFILES_DIR} && \
-    cd "${DOTFILES_DIR}"
+    cd "${DOTFILES_DIR}" && \
+    echo -e "${PURPLE}Updating submodules${RESET}" && \
+    git submodule update --recursive --remote --init
   else # Dotfiles already downloaded, just fetch latest changes
     echo -e "${PURPLE}Pulling changes from ${REPO_NAME} into ${DOTFILES_DIR}${RESET}"
     cd "${DOTFILES_DIR}" && \
-    git pull origin main && \
+    git pull origin main --force && \
     echo -e "${PURPLE}Updating submodules${RESET}" && \
     git submodule update --recursive --remote --init
   fi
