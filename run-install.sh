@@ -274,13 +274,24 @@ function apply_preferences () {
 # Homebrew not installed, ask user if they'd like to download it now
 function install_homebrew () {
   if ! command_exists brew; then
-    echo -e "\n${CYAN_B}Would you like to install Homebrew? (y/N)${RESET}"
+    echo -e "\n${CYAN_B}Would you like to install Homebrew and brew global libraries? (y/N)${RESET}"
     read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewins
     if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
       echo -en "🍺 ${PURPLE}Installing Homebrew...${RESET}\n"
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
+
+      # Update / Install the Homebrew packages in ~/.Brewfile
+      if [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
+        echo -en "🍺 ${PURPLE}Installing libraries...${RESET}\n"
+        brew update # Update Brew to latest version
+        brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
+        brew cleanup # Remove stale lock files and outdated downloads
+        killall Finder # Restart finder (required for some apps)
+      else
+        echo -e "${PURPLE}Skipping Installation of Homebrew libraries as requirements not met${RESET}"
+      fi
     fi
   else
     echo -e "${PURPLE}Skipping Homebrew is already installed!${RESET}"
@@ -296,23 +307,8 @@ function install_packages () {
     return
   fi
 
-  # Install Hombrew and update packages by default
+  # Install and setup homebrew
   install_homebrew
-
-  # Update / Install the Homebrew packages in ~/.Brewfile
-  if command_exists brew && [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
-    echo -e "\n${CYAN_B}Would you like to install / update homebrew packages? (y/N)${RESET}"
-    if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then 
-      echo -e "\n${PURPLE}Updating homebrew and packages...${RESET}"
-      brew update # Update Brew to latest version
-      brew upgrade # Upgrade all installed casks
-      brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
-      brew cleanup # Remove stale lock files and outdated downloads
-      killall Finder # Restart finder (required for some apps)
-    fi
-  else
-    echo -e "${PURPLE}Skipping Homebrew as requirements not met${RESET}"
-  fi
 
   if [ -f "/etc/arch-release" ]; then
     # Arch Linux
