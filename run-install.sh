@@ -289,7 +289,7 @@ function install_homebrew () {
       if [[ $ans_homebrewupdt =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
         if [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ] && command_exists brew; then
           echo -en "🍺 ${PURPLE}Installing libraries...${RESET}\n"
-          brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
+          brew bundle --global --file $DOTFILES_DIR/scripts/installs/Brewfile # Install all listed Brew apps
           brew cleanup # Remove stale lock files and outdated downloads
           killall Finder # Restart finder (required for some apps)
         else
