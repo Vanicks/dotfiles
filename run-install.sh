@@ -231,7 +231,7 @@ function apply_preferences () {
     read -t $PROMPT_TIMEOUT -n 1 -r ans_zsh
     if [[ $ans_zsh =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
       echo -e "${PURPLE}Setting ZSH as default shell${RESET}"
-      # chsh -s $(which zsh) $USER
+      sudo chsh -s $(which zsh) $USER
     fi
   fi
 
@@ -286,7 +286,7 @@ function install_homebrew () {
       echo "eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> ~/.zshrc
 
       # Ask if i want to install the libs in the brewfile after installing homebrew
-      echo -e "\n${CYAN_B}Would you like to install Update Homebrew and install global libraries? (y/N)${RESET}"
+      echo -e "\n${CYAN_B}Would you like to install Homebrew global libraries? (y/N)${RESET}"
       read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewupdt
       if [[ $ans_homebrewupdt =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
         if [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ] && command_exists brew; then
