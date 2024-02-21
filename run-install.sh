@@ -281,8 +281,12 @@ function install_homebrew () {
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
-
-      # Update / Install the Homebrew packages in ~/.Brewfile
+    fi
+  else
+    # Update / Install the Homebrew packages in ~/.Brewfile
+    echo -e "\n${CYAN_B}Would you like to install Homebrew global libraries? (y/N)${RESET}"
+    read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewins
+    if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
       if [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
         echo -en "🍺 ${PURPLE}Installing libraries...${RESET}\n"
         brew update # Update Brew to latest version
@@ -293,8 +297,6 @@ function install_homebrew () {
         echo -e "${PURPLE}Skipping Installation of Homebrew libraries as requirements not met${RESET}"
       fi
     fi
-  else
-    echo -e "${PURPLE}Skipping Homebrew is already installed!${RESET}"
   fi
 }
 
