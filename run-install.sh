@@ -281,28 +281,39 @@ function install_homebrew () {
       brew_url='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
       /bin/bash -c "$(curl -fsSL $brew_url)"
       export PATH="/usr/local/bin:$PATH"
-    fi 
-  fi
-}
 
-function install_homebrew_libs () {
-  # Update / Install the Homebrew packages in ~/.Brewfile
-  if command_exists brew; then
-    echo -e "\n${CYAN_B}Would you like to install Homebrew global libraries? (y/N)${RESET}"
-    read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewins
-    if [[ $ans_homebrewins =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
+      # Ask if i want to install the libs in the brewfile after installing homebrew
+      echo -e "\n${CYAN_B}Would you like to install Update Homebrew and install global libraries? (y/N)${RESET}"
+      read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewupdt
+      if [[ $ans_homebrewupdt =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]] ; then
+        if [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ] && command_exists brew; then
+          echo -en "🍺 ${PURPLE}Installing libraries...${RESET}\n"
+          brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
+          brew cleanup # Remove stale lock files and outdated downloads
+          killall Finder # Restart finder (required for some apps)
+        else
+          echo -e "${PURPLE}Skipping Installation of Homebrew libraries as requirements not met${RESET}"
+        fi
+      fi
+    fi
+  else
+    # If homebrew is already installed still ask the user if they want to install the libs in the brew file
+    echo -e "\n${CYAN_B}Would you like to install Update Homebrew and install global libraries? (y/N)${RESET}"
+    read -t $PROMPT_TIMEOUT -n 1 -r ans_homebrewupdt
+    if [[ $ans_homebrewupdt =~ ^[Yy]$ ]] || [[ $AUTO_YES = true ]]; then
       if [ -f "$DOTFILES_DIR/scripts/installs/Brewfile" ]; then
-        echo -en "🍺 ${PURPLE}Installing libraries...${RESET}\n"
+        echo -en "🍺 ${PURPLE}Updating brew to latest version...${RESET}\n"
         brew update # Update Brew to latest version
+        echo -en "🍺 ${PURPLE}Installing libraries...${RESET}\n"
         brew bundle --global --file $HOME/.Brewfile # Install all listed Brew apps
         brew cleanup # Remove stale lock files and outdated downloads
         killall Finder # Restart finder (required for some apps)
       else
-        echo -e "${PURPLE}Skipping Installation of Homebrew libraries as requirements not met${RESET}"
+        echo -e "${PURPLE}Skipping update/installation of Homebrew & libraries as requirements not met${RESET}"
       fi
     fi
   fi
-} 
+}
 
 # Based on system type, uses appropriate package manager to install / updates apps
 function install_packages () {
@@ -315,7 +326,6 @@ function install_packages () {
 
   # Install and setup homebrew
   install_homebrew
-  install_homebrew_libs
 
   if [ -f "/etc/arch-release" ]; then
     # Arch Linux
