@@ -66,11 +66,9 @@ make_intro () {
   "  ${C3}- Clone or update dotfiles from git\n"\
   "  ${C3}- Symlinks dotfiles to correct locations\n"\
   "${C2}(3) Install packages\n"\
-  "  ${C3}- On All OS, prompt to install Homebrew if not present\n"\
-  "  ${C3}- On All OS, updates and installs apps liseted in Brewfile\n"\
-  "  ${C3}- On Arch Linux, updates and installs packages via Pacman\n"\
-  "  ${C3}- On Debian Linux, updates and installs packages via apt get\n"\
-  "  ${C3}- On Linux desktop systems, prompt to install desktop apps via Flatpak\n"\
+  "  ${C3}- Prompt to install Homebrew if not present\n"\
+  "  ${C3}- Updates and installs apps liseted in Brewfile\n"\
+  "  ${C3}- Updates and installs packages via apt get\n"\
   "  ${C3}- Checks that OS is up-to-date and critical patches are installed\n"\
   "${C2}(4) Configure system\n"\
   "  ${C3}- Setup Tmux, and install / update Tmux plugins via TPM\n"\
