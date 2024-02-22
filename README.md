@@ -1,1 +1,31 @@
-# dotfiles
+
+<div align="center">
+  <a aria-label="GitHub License" href="https://github.com/igorkowalczyk/dotfiles/blob/main/license.md">
+    <img src="https://img.shields.io/github/license/igorkowalczyk/dotfiles?color=%2334D058&logo=github&style=flat-square&label=License">
+  </a>
+  <a aria-label="Version" href="https://github.com/igorkowalczyk/dotfiles/releases">
+    <img src="https://img.shields.io/github/v/release/igorkowalczyk/dotfiles?color=%2334D058&logo=github&style=flat-square&label=Version">
+  </a>
+</div>
+
+---
+
+# ⚡️ Lets Goooooo
+
+**Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). Don't forget to remove old `~/.gitconfig` file! This file will be automatically included in new `~/.gitconfig` file.
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/Vanicks/dotfiles/main/lets-go.sh)
+
+```
+
+This will execute the quick setup script (in [`lets-go.sh`](https://github.com/Vanicks/dotfiles/blob/main/lets-go.sh)), which just clones the repo (if not yet present), then executes the [`run-install.sh`](https://github.com/Vanicks/dotfiles/blob/main/run-install.sh) script. You can re-run this at anytime to update the dotfiles. You can also optionally pass in some variables to change the install location (`DOTFILES_DIR`) and source repo (`DOTFILES_REPO`) to use your fork.
+
+The install script [does several things](#install-script), it takes care of checking dependencies are met, updating dotfiles and symlinks, configuring CLI (Vim, Tmux, ZSH, etc), and will prompt the user to install listed packages, update the OS and apply any system preferences. The script is idempotent, so it can be run multiple times without changing the result, beyond the initial application.
+
+# 📦 Content
+
+- `zsh/` - [Zsh](https://www.zsh.org/) config with [Oh My Zsh](https://ohmyz.sh/), includes aliases for Git, Debian, and [TheFuck](https://github.com/nvbn/thefuck)
+- `oh-my-zsh/` - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete) plugins. [(See all plugins)](https://github.com/Vanicks/dotfiles/blob/main/run-install.sh)
+- `nvim/` - Use [Nvchad](https://nvchad.com/) plugin cause why not?
+- `dotbot/` - [Dotbot](https://github.com/anishathalye/dotbot) repository
