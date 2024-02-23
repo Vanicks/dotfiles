@@ -24,3 +24,6 @@ brew 'lynis'           # Scan system for common security issues
 # Monitoring, management, and stats
 brew 'btop'            # Live system resource monitoring
 brew 'gping'           # Interactive ping tool, with graph
+
+# Fun stuff
+brew 'cowsay'
