@@ -16,8 +16,8 @@
 ## ⚡️ Lets Goooooo
 
 > [!WARNING]
-**Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). <br>
-Don't forget to remove old `~/.gitconfig` file! This file will be automatically included in new `~/.gitconfig` file.
+
+**Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). Don't forget to remove old `~/.gitconfig` file! This file will be automatically included in new `~/.gitconfig` file.
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Vanicks/dotfiles/main/lets-go.sh)
