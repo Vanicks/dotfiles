@@ -15,14 +15,12 @@
 
 ## ⚡️ Lets Goooooo
 
-**Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). Don't forget to remove old `~/.gitconfig` file! This file will be automatically included in new `~/.gitconfig` file.
+> [!WARNING]
+> **Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). Don't forget to remove old `~/.gitconfig` file! This file will be automatically included in new `~/.gitconfig` file.
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Vanicks/dotfiles/main/lets-go.sh)
 ```
-
-> [!WARNING]
-> Script will install [Zsh](https://www.zsh.org/) with [Oh My Zsh](https://ohmyz.sh/) and [Node Version Manager](https://github.com/nvm-sh/nvm) if not installed.
 
 This will execute the quick setup script (in [`lets-go.sh`](https://github.com/Vanicks/dotfiles/blob/main/lets-go.sh)), which just clones the repo (if not yet present), then executes the [`run-install.sh`](https://github.com/Vanicks/dotfiles/blob/main/run-install.sh) script. You can re-run this at anytime to update the dotfiles. You can also optionally pass in some variables to change the install location (`DOTFILES_DIR`) and source repo (`DOTFILES_REPO`) to use your fork.
 
