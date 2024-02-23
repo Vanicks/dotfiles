@@ -16,7 +16,7 @@
 ## ⚡️ Lets Goooooo
 
 > [!WARNING]
-> **Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). 
+> **Before you start**: If you have `~/.gitconfig` file, please copy and paste your data to `~/.config/general/gitconfig` file (it will be created after installation). <br>
 > Don't forget to remove old `~/.gitconfig` file! This file will be automatically included in new `~/.gitconfig` file.
 
 ```bash
