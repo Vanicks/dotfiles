@@ -14,7 +14,6 @@ dbaeumer.vscode-eslint
 GitHub.vscode-pull-request-github
 ecmel.vscode-html-css
 ritwickdey.LiveServer
-yzhang.markdown-all-in-one
 leizongmin.node-module-intellisense
 christian-kohler.path-intellisense
 esbenp.prettier-vscode
@@ -24,3 +23,4 @@ Natizyskunk.sftp
 alexcvzz.vscode-sqlite
 bradlc.vscode-tailwindcss
 WakaTime.vscode-wakatime
+bierner.github-markdown-preview
