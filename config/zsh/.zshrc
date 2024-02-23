@@ -73,7 +73,6 @@ if hash zoxide 2> /dev/null; then
 fi
 
 # If not running in nested shell, then show welcome message :)
-if [[ "${SHLVL}" -lt 2 ]] && \
-  { [[ -z "$SKIP_WELCOME" ]] || [[ "$SKIP_WELCOME" == "false" ]]; }; then
+if { [[ -z "$SKIP_WELCOME" ]] || [[ "$SKIP_WELCOME" == "false" ]]; }; then
   welcome
 fi
